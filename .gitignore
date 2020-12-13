@@ -1,2 +1,3 @@
-/Matcher/target/
-/Solver/target/
+target/
+*.iml
+.idea
