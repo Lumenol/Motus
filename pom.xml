@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>fr.lumen.motus</groupId>
-    <artifactId>motus</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>parent</artifactId>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
     <modules>
         <module>core</module>
