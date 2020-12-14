@@ -6,9 +6,8 @@
     <parent>
         <artifactId>parent</artifactId>
         <groupId>fr.lumen.motus</groupId>
-        <version>1.0.0</version>
+        <version>1.1.0-SNAPSHOT</version>
     </parent>
-
     <artifactId>cli</artifactId>
 
     <dependencies>
@@ -20,55 +19,9 @@
             <groupId>info.picocli</groupId>
             <artifactId>picocli</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-picocli</artifactId>
+        </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>info.picocli</groupId>
-                            <artifactId>picocli-codegen</artifactId>
-                            <version>${picocli.version}</version>
-                        </path>
-                    </annotationProcessorPaths>
-                    <compilerArgs>
-                        <arg>-Aproject=${project.groupId}/${project.artifactId}</arg>
-                    </compilerArgs>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                    <appendAssemblyId>false</appendAssemblyId>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>matcher</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <finalName>Motus</finalName>
-                            <archive>
-                                <manifest>
-                                    <mainClass>fr.lumen.motus.cli.Cli</mainClass>
-                                </manifest>
-                            </archive>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 </project>
