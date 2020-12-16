@@ -45,10 +45,10 @@ public class MatcherCli implements Callable<Integer> {
 
     @Override
     public Integer call() {
-        final String response = word.toUpperCase();
+        final String response = word.trim().toUpperCase();
         final int length = response.length();
 
-        final List<String> propositions = this.propositions.stream().map(String::toUpperCase).collect(Collectors.toList());
+        final List<String> propositions = this.propositions.stream().map(String::trim).map(String::toUpperCase).collect(Collectors.toList());
         if (propositions.stream().anyMatch(p -> p.length() != length)) {
             System.err.println("All propositions must have " + length + " characters.");
             return 1;

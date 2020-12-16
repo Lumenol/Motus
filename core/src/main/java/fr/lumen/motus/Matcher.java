@@ -4,11 +4,12 @@ public class Matcher {
     private final String word;
 
     public Matcher(String word) {
-        this.word = word;
+        this.word = word.toUpperCase();
     }
 
     public String result(String proposition) {
-        assert word.length() == proposition.length();
+        if (word.length() != proposition.length())
+            throw new IllegalArgumentException("Proposition must have same size that answer.");
         StringBuilder result = new StringBuilder(word.length());
         for (int i = 0; i < word.length(); i++) {
             final char c = proposition.charAt(i);

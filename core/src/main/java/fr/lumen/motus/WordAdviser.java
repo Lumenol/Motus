@@ -39,15 +39,12 @@ public class WordAdviser {
     }
 
     public Optional<Advise> advise() {
-        final List<String> words = solver.allSolutions().collect(Collectors.toList());
-        return advise(words);
+        return advise(-1);
     }
 
     public Optional<Advise> advise(int limit) {
-        if (limit <= 0) {
-            throw new IllegalArgumentException("Limit must be greater that 0.");
-        }
-        final List<String> words = solver.allSolutions().limit(limit + 1).collect(Collectors.toList());
+        final Stream<String> solutions = limit <= 0 ? solver.allSolutions() : solver.allSolutions().limit(limit + 1);
+        final List<String> words = solutions.collect(Collectors.toList());
         return advise(words);
     }
 

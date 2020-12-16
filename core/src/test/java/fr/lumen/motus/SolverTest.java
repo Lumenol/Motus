@@ -3,12 +3,13 @@ package fr.lumen.motus;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class SolverTest {
     private static List<String> words() {
-        return List.of("ACCUS", "BONNE", "CIBLA", "CREPU", "CROIS", "FILET", "GRECS", "HANTE", "JIMMY", "LYCEE", "NUAGE", "PELER", "PIQUE", "QUART", "ROUND", "SEIDE", "TANGO", "TIREE", "TONUS", "VOUTE");
+        return DictionaryUtils.clean(Stream.of("ACCUS", "BONNE", "CIBLA", "CREPU", "CROIS", "FILET", "GRECS", "HANTE", "JIMMY", "LYCEE", "NUAGE", "PELER", "PIQUE", "QUART", "ROUND", "SEIDE", "TANGO", "TIREE", "TONUS", "VOUTE"));
     }
 
     @Test

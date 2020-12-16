@@ -32,6 +32,9 @@ public class Solver {
 
     private Constraint is(String word) {
         if (this.word.length == word.length()) {
+            if (!word.chars().allMatch(Character::isUpperCase)) {
+                throw new IllegalArgumentException("'" + word + "' must contains only A-Z characters.");
+            }
             Constraint[] constraints = new Constraint[this.word.length];
             for (int i = 0; i < this.word.length; i++) {
                 constraints[i] = eq(i, word.charAt(i));

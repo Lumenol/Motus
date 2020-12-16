@@ -41,7 +41,7 @@ public class SolverCli implements Callable<Integer> {
                     }
                 }
                 try {
-                    solver.addProposition(proposition[0].trim(), proposition[1].trim());
+                    solver.addProposition(proposition[0].trim().toUpperCase(), proposition[1].trim().toUpperCase());
                 } catch (Exception e) {
                     System.err.println(e.getMessage());
                     if (!mixin.isInteractive()) {

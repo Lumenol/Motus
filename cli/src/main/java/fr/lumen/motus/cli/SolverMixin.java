@@ -1,15 +1,15 @@
 package fr.lumen.motus.cli;
 
+import fr.lumen.motus.DictionaryUtils;
 import picocli.CommandLine.Model.CommandSpec;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Spec;
 
-import java.io.*;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class SolverMixin {
@@ -21,12 +21,6 @@ public class SolverMixin {
     private Path dictionary;
     @Option(names = {"-i", "--interactive"})
     private boolean interactive;
-
-    private static List<String> clean(Stream<String> words) {
-        return words.map(String::toUpperCase)
-                .filter(w -> w.chars().allMatch(Character::isUpperCase))
-                .sorted().distinct().collect(Collectors.toList());
-    }
 
     public int getLength() {
         return length;
@@ -49,12 +43,10 @@ public class SolverMixin {
     public List<String> loadDictionary() throws IOException {
         info("Loading dictionary.");
         if (dictionary == null) {
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(SolverMixin.class.getResourceAsStream("/words.txt")))) {
-                return clean(reader.lines());
-            }
+            return DictionaryUtils.getEmbedded();
         } else {
             try (Stream<String> lines = Files.lines(dictionary)) {
-                return clean(lines);
+                return DictionaryUtils.clean(lines);
             }
         }
     }
